@@ -22,6 +22,7 @@ class RegisterUserAPIView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,IsAdminUser)
 
 
+# TODO::fix update function
 class UpdateProfileView(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = serializers.UpdateUserSerializer
