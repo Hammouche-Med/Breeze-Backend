@@ -49,7 +49,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
-
+        
+# # FTP lib
 
 class UpdateUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
@@ -79,10 +80,14 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
 
     def update(self, instance, validated_data):
+        print(validated_data)
+        print(instance)
         instance.username = validated_data['username'],
         instance.email = validated_data['email'],
         instance.first_name = validated_data['first_name'],
         instance.last_name = validated_data['last_name'],
+        print("before-*****-----",instance.username[0])
+        print(instance.username)
         if validated_data['is_staff'] == 'true' :
             instance.is_staff = True  
         else:
@@ -93,7 +98,9 @@ class UpdateUserSerializer(serializers.ModelSerializer):
             instance.is_superuser = False  
         # instance.is_staff = validated_data['is_staff'],
         # instance.is_superuser = validated_data['is_superuser'],
+        print("before------",instance)
         instance.set_password(validated_data['password'])
         instance.save()
+        # print("after------",instance)
 
         return instance

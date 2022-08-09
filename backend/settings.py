@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     #installed apps
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
 
     'users',
     'region',
@@ -57,6 +58,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+] 
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    'http://localhost:3000',
 ]
 
 ROOT_URLCONF = 'backend.urls'
