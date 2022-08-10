@@ -1,5 +1,7 @@
 from django.db import models
 
+from region.models import Region
+
 
 class Station (models.Model):
     OACI = models.CharField(max_length=50)
@@ -9,6 +11,8 @@ class Station (models.Model):
     longitude = models.FloatField(max_length=100)
     latitude = models.FloatField(max_length=100)
     altitude = models.FloatField(max_length=100)
+
+    region = models.ForeignKey(Region, related_name='region', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
