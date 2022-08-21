@@ -7,7 +7,7 @@ from django.contrib.auth.password_validation import validate_password
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id','email', 'username', 'first_name', 'last_name',
+        fields = ('id','email', 'username', 'first_name', 'last_name', 'phone',
                   'password', 'is_superuser', 'is_staff')
 
 
@@ -52,55 +52,36 @@ class RegisterSerializer(serializers.ModelSerializer):
         
 # # FTP lib
 
-class UpdateUserSerializer(serializers.ModelSerializer):
+class UpdateUserSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
+    phone = serializers.IntegerField(required=True)
+    username = serializers.CharField(required=True)
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
+    is_superuser = serializers.BooleanField(required=True)
+    is_staff = serializers.BooleanField(required=True)
+
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'username',
-                  'password', 'is_superuser', 'is_staff')
-
+        fields = ('id','username', 'first_name', 'last_name', 'email', 'phone', 'password', 'is_superuser', 'is_staff')
         extra_kwargs = {
             'first_name': {'required': True},
-            'last_name': {'required': True}
+            'last_name': {'required': True},
         }
 
-    # def validate(self, attrs):
-    #     if attrs['password'] != attrs['password2']:
-    #         raise serializers.ValidationError(
-    #             {"password": "Password fields didn't match."})
-    #     return attrs
-
-    # def validate_email(self, value):
-    #     user = self.context['request'].user
-    #     if User.objects.exclude(pk=user.pk).filter(email=value).exists():
-    #         raise serializers.ValidationError(
-    #             {"email": "This email is already in use."})
-    #     return value
-
-
     def update(self, instance, validated_data):
-        print(validated_data)
-        print(instance)
-        instance.username = validated_data['username'],
-        instance.email = validated_data['email'],
-        instance.first_name = validated_data['first_name'],
-        instance.last_name = validated_data['last_name'],
-        print("before-*****-----",instance.username[0])
-        print(instance.username)
-        if validated_data['is_staff'] == 'true' :
-            instance.is_staff = True  
-        else:
-            instance.is_staff = False  
-        if validated_data['is_superuser'] == 'true' :
-            instance.is_superuser = True  
-        else:
-            instance.is_superuser = False  
-        # instance.is_staff = validated_data['is_staff'],
-        # instance.is_superuser = validated_data['is_superuser'],
-        print("before------",instance)
+        print('----val--', validated_data)
+        print('---**ins****---', instance)
+        instance.first_name = validated_data['first_name']
+        instance.last_name = validated_data['last_name']
+        instance.phone = validated_data['phone']
+        instance.email = validated_data['email']
+        instance.username = validated_data['username']
+        instance.is_superuser = validated_data['is_superuser']
+        instance.is_staff = validated_data['is_staff']
         instance.set_password(validated_data['password'])
         instance.save()
-        # print("after------",instance)
 
         return instance

@@ -4,11 +4,12 @@ from .models import User
 from . import serializers
 from backend.permissions import IsAdminUser, IsAuthenticated
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
 
 @api_view(["DELETE"])
+@permission_classes([IsAuthenticated, IsAdminUser])
 def deleteUser(request, pk):
     user = User.objects.get(id=pk)
     user.delete()
