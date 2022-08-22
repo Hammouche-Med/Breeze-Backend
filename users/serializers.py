@@ -79,3 +79,21 @@ class UpdateUserSerializer(serializers.Serializer):
         instance.save()
 
         return instance
+
+class ResetPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(required=True)
+
+    class Meta:
+        model = User
+        fields = ('id','username', 'first_name', 'last_name', 'email', 'phone', 'password', 'is_superuser')
+        extra_kwargs = {
+            'first_name': {'required': True},
+            'last_name': {'required': True},
+        }
+
+    def update(self, instance, validated_data):
+         
+        instance.set_password(validated_data['password'])
+        instance.save()
+
+        return instance
