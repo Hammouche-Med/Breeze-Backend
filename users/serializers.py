@@ -58,30 +58,24 @@ class UpdateUserSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
-    password = serializers.CharField(required=True)
     is_superuser = serializers.BooleanField(required=True)
-    is_staff = serializers.BooleanField(required=True)
 
 
     class Meta:
         model = User
-        fields = ('id','username', 'first_name', 'last_name', 'email', 'phone', 'password', 'is_superuser', 'is_staff')
+        fields = ('id','username', 'first_name', 'last_name', 'email', 'phone', 'password', 'is_superuser')
         extra_kwargs = {
             'first_name': {'required': True},
             'last_name': {'required': True},
         }
 
     def update(self, instance, validated_data):
-        print('----val--', validated_data)
-        print('---**ins****---', instance)
         instance.first_name = validated_data['first_name']
         instance.last_name = validated_data['last_name']
         instance.phone = validated_data['phone']
         instance.email = validated_data['email']
         instance.username = validated_data['username']
-        instance.is_superuser = validated_data['is_superuser']
-        instance.is_staff = validated_data['is_staff']
-        instance.set_password(validated_data['password'])
+        instance.is_superuser = validated_data['is_superuser']  
         instance.save()
 
         return instance
