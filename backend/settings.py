@@ -47,7 +47,8 @@ INSTALLED_APPS = [
 
     'users',
     'region',
-    'stations'
+    'stations',
+    'production'
 ]
 
 MIDDLEWARE = [
