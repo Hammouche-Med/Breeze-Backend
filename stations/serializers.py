@@ -1,12 +1,19 @@
 from rest_framework import serializers
-# from region.serializers import RegionSerializer
+
+from production.serializers import ProductionSerializer
 from .models import Station
+from region.serializers import RegionSerializer
 
  
 class StationsSerializer( serializers.ModelSerializer) :
-    # region_id = serializers.RelatedField(source='region', read_only=True)
-    region_code = serializers.CharField(source='region.code', read_only=True)
-    region_name = serializers.CharField(source='region.name', read_only=True)
+    reg =  RegionSerializer(source="region", many=False  , read_only=True)
+    mtr =  ProductionSerializer(source="metar", many=False  , read_only=True)
+    snp =  ProductionSerializer(source="synop", many=False  , read_only=True)
+
+    calculated_feild = serializers.SerializerMethodField('num')
+    def num(self, station):
+      return station.altitude * station.longitude 
+
     class Meta : 
         model = Station
         fields = '__all__'

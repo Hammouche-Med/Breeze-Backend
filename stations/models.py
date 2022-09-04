@@ -1,5 +1,5 @@
 from django.db import models
-
+from production.models import Production
 from region.models import Region
 
 
@@ -13,6 +13,10 @@ class Station (models.Model):
     altitude = models.FloatField(max_length=100)
 
     region = models.ForeignKey(Region, related_name='region', on_delete=models.CASCADE)
+    # metar, synp
+    metar = models.ForeignKey(Production, related_name='metar', on_delete=models.CASCADE)
+    synop = models.ForeignKey(Production, related_name='synop', on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.name

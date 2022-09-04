@@ -1,1 +1,9 @@
 METAR LBBG 041600Z 12012MPS 090V150 1400 R04/P1500N R22/P1500U +SN BKN022 OVC050 M04/M07 Q1020 NOSIG 8849//91=
+
+
+
+
+# the ttime of the message is in utc meaning gmt-1  very importatnt
+# prod5 mean +5 not -5
+# rtd 33 ok for all even 1h and 30min
+# when stt send a synop it wont send a metar most of the time ????????
