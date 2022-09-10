@@ -14,8 +14,8 @@ class Station (models.Model):
 
     region = models.ForeignKey(Region, related_name='region', on_delete=models.CASCADE)
     # metar, synp
-    metar = models.ForeignKey(Production, related_name='metar', on_delete=models.CASCADE)
-    synop = models.ForeignKey(Production, related_name='synop', on_delete=models.CASCADE)
+    metar = models.ForeignKey(Production, related_name='metar', on_delete=models.CASCADE, null=True)
+    synop = models.ForeignKey(Production, related_name='synop', on_delete=models.CASCADE, null=True)
 
 
     def __str__(self):

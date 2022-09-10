@@ -47,9 +47,17 @@ def createObservation(request):
 #         data.save()
 #     return Response("observation updated successfully")
 
-# @api_view(["DELETE"])
-# @permission_classes([IsAuthenticated, IsAdminUser])
-# def deleteObservation(request, pk):
-#     observation = Observation.objects.get(id=pk)
-#     observation.delete()
-#     return Response("observation deleted successfully")
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated, IsAdminUser])
+def deleteObservation(request, pk):
+    observation = Observation.objects.get(id=pk)
+    observation.delete()
+    return Response("observation deleted successfully")
+
+    
+@api_view(["DELETE"])
+def deleteAllObservation(request):
+    observation = Observation.objects.all()
+    observation.delete()
+    return Response("observation deleted successfully")
+

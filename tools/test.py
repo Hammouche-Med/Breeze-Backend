@@ -1,39 +1,37 @@
 from datetime import datetime
+import calendar
 
-metar = [ "hjklk", "jlkn", "03", "18","30" ]
+# metar = [ "hjklk", "jlkn", "03", "18","30" ]
 
-m = datetime.now().strftime('%m')
-y = datetime.now().strftime('%Y')
+# m = datetime.now().strftime('%m')
+# y = datetime.now().strftime('%Y')
 
-obs = metar[2]+"-"+m+"-"+y
+# obs = metar[2]+"-"+m+"-"+y
 
-d = datetime.now()
-dd = datetime(int(y),int(m),int(metar[2]),int(metar[3]),int(metar[4]))
+# obs_date = datetime.strptime("06:00:00", '%H:%M:%S')
+# rec_date = datetime.strptime("07:36:00", '%H:%M:%S')
 
-print (obs ,d,dd )
+# difff = rec_date - obs_date
+# diff = (difff.total_seconds() / 60) - 60
 
-difff = d - dd
-diff = difff.total_seconds()/60 - 60
+# print(diff)
 
-if diff <=  5 :
-    print (diff," ph5")
-elif diff <= 10 :
-    print(diff," ph10")
-elif diff <= 33:
-    print(diff," ph33")
-elif diff <= 49:
-    print(diff," ph49")
-else :
-    print(diff,' omis') 
+# if diff <=  3 :
+#     print (diff," ph5")
+# elif diff <= 5 :
+#     print(diff," ph10")
+# elif diff <= 33:
+#     print(diff," ph33")
+# elif diff <= 49:
+#     print(diff," ph49")
+# else :
+#     print(diff,' omis') 
 
-exp = 244
-rec = 243
 
-per = rec / exp * 100
 
-print (per)
-
-t1 = "06:00:00"
-t2 = "18:00:00"
-
-print(t1-t2)
+now = datetime.now()
+if calendar.isleap(2024):
+    num = 366
+else:
+    num = 365
+print(num)
