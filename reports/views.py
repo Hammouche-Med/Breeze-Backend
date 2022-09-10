@@ -28,7 +28,7 @@ def getDayReport(request, pk):
         rec_date__year=range.year,
         rec_date__month=range.month,
         rec_date__day=range.day, station=pk, type=obs_type)
-    if obs_key.count() > 0 :
+    if obs_key.count() > 0 :#!!!!!!!!!!!!! S_OBS.COUNT????????,, 
         s_obs = ReportSerializer(obs_key, many=True, ).data
         stat = {
             "stat_id": s_obs[0]["id"],
@@ -212,6 +212,7 @@ def getMonthReport(request, pk):
             "stat_oaci": s_obs[0]["stat"]["OACI"],
             "stat_omm": s_obs[0]["stat"]["OMM"],
             "expected_d": s_obs[0]["stat"][obs_type]["expected_d"],
+            "expected_m": s_obs[0]["stat"][obs_type]["expected_m"],
         }
         rec_num = obs_key.count()
         prod = round((rec_num / (stat["expected_d"] * days_in_current_month) ) * 100, 2)
@@ -294,6 +295,7 @@ def getTotalMonthReport(request):
                 "stat_oaci": s_obs[0]["stat"]["OACI"],
                 "stat_omm": s_obs[0]["stat"]["OMM"],
                 "expected_d": s_obs[0]["stat"][obs_type]["expected_d"],
+                "expected_m": s_obs[0]["stat"][obs_type]["expected_m"],
             }
             rec_num = obs_key.count()
             prod = round((rec_num / (stat["expected_d"] * days_in_current_month) ) * 100, 2)
@@ -390,7 +392,7 @@ def getYearReport(request, pk):
             "stat_name": s_obs[0]["stat"]["name"],
             "stat_oaci": s_obs[0]["stat"]["OACI"],
             "stat_omm": s_obs[0]["stat"]["OMM"],
-            "expected_d": s_obs[0]["stat"][obs_type]["expected_d"],
+            "expected_y": s_obs[0]["stat"][obs_type]["expected_d"] * days_in_current_year,
         }
         rec_num = obs_key.count()
         prod = round((rec_num / (stat["expected_d"] * days_in_current_year) ) * 100, 2)
