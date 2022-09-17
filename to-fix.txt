@@ -1,0 +1,73 @@
+---urgent:													---done
+
+															------_fix 24 hour day bug in taux crud : 
+															------	{ 
+															------		_add boolean all_day
+															------		_if all_day : ex_d = 24*60/rate
+															------	  }
+															------_fix metar loophole(not sending)bug : 
+															------	{ 
+															------		_add boolean is_fixed
+															------		_calclulate num of synop
+															------		_if !is_fixed : ex_d = (((t1-t2)*60/rate)-num_syn)
+															------    }
+_add change taux for station in setting :
+	{ 
+	  _crud station_production
+	}
+_add export CSV : 
+	{ 
+	  _find export function (react)
+	  	or
+	  _make export from django
+	}
+_add staff view : 
+	{ 
+	  _add is_staff to AuthContext
+	  _import AuthContext in components
+	  _simple if else should do the work
+	}
+_add colors to report table: 
+	{ 
+	  _ask for collor pallet
+	}
+_fix language (translate to french): 
+	{ 
+	  _hardcode French lang
+	  	or
+	  _use i18n
+	}
+_fix 0 not showing in user phone: 
+	{ 
+	  _hardcode 0
+	  	or
+	  _change phone field to char_max-len=15
+	}
+_fix sql tables view : 
+	{ 
+	  _figure out how to show schema in pgadmin-4
+	  	or
+	  _find another way to show tables in use
+	}
+_design dashboard page
+_check the calculations one last time and fix any bugs
+_fix time obs single view
+_fix app main icon
+_check all alert msgs
+_remove rounding in all except report app
+
+---misc
+
+_fix submit button names
+_add cancel button in forms
+_remove period of time 
+_fix app main icon
+_change color? (need ask first)
+_add pagination
+_fix toggle sidebar button
+_add apex chart to station single view and report view
+_change app name to AMET_STAT
+_fix rightside scroll apearing when clicking on reports or settings
+
+
+deadline : 19/09/2022 6:00 AM
