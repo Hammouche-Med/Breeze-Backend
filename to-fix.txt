@@ -11,22 +11,22 @@
 															------		_calclulate num of synop
 															------		_if !is_fixed : ex_d = (((t1-t2)*60/rate)-num_syn)
 															------    }
-_add change taux for station in setting :
-	{ 
-	  _crud station_production
-	}
-_add export CSV : 
-	{ 
-	  _find export function (react)
-	  	or
-	  _make export from django
-	}
-_add staff view : 
-	{ 
-	  _add is_staff to AuthContext
-	  _import AuthContext in components
-	  _simple if else should do the work
-	}
+															------_add change taux for station in setting :
+															------	{ 
+															------		_crud station_production
+															------	  }
+															------_add export CSV : 
+															------	{ 
+															------		_find export function (react)
+															------				or
+															------		_make export from django
+															------	  }
+															------_add staff view : 
+															------	{ 
+															------		_add is_staff to AuthContext
+															------		_import AuthContext in components
+															------		_simple if else should do the work
+															------	  }
 _add colors to report table: 
 	{ 
 	  _ask for collor pallet
@@ -55,6 +55,7 @@ _fix time obs single view
 _fix app main icon
 _check all alert msgs
 _remove rounding in all except report app
+_fix diff output on reports on expected recs
 
 ---misc
 
