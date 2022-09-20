@@ -177,6 +177,8 @@ def getTotalDayReport(request):
                 "stat_name": stat_obj["name"],
                 "stat_oaci": stat_obj["OACI"] ,
                 "stat_omm": stat_obj["OMM"],
+                "expected_d": stat_obj[obs_type]["expected_d"] ,
+
                 "taux": stat_obj[obs_type]
             }
             result.append({
@@ -356,6 +358,7 @@ def getTotalMonthReport(request):
                 "stat_name": stat_obj["name"],
                 "stat_oaci": stat_obj["OACI"] ,
                 "stat_omm": stat_obj["OMM"],
+                "expected_m": stat_obj[obs_type]["expected_m"] ,
                 "taux": stat_obj[obs_type]
             }
             result.append({
@@ -476,6 +479,7 @@ def getTotalYearReport(request):
                 "stat_oaci": s_obs[0]["stat"]["OACI"],
                 "stat_omm": s_obs[0]["stat"]["OMM"],
                 "expected_d": s_obs[0]["stat"][obs_type]["expected_d"],
+                "expected_y": s_obs[0]["stat"][obs_type]["expected_d"] * days_in_current_year,
             }
             rec_num = obs_key.count()
             prod = round((rec_num / (stat["expected_d"] * days_in_current_year) ) * 100, 2)
@@ -536,6 +540,7 @@ def getTotalYearReport(request):
                 "stat_name": stat_obj["name"],
                 "stat_oaci": stat_obj["OACI"] ,
                 "stat_omm": stat_obj["OMM"],
+                "expected_y": stat_obj[obs_type]["expected_d"] * days_in_current_year ,
                 "taux": stat_obj[obs_type]
             }
             result.append({

@@ -23,7 +23,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'username',
+        fields = ('first_name', 'last_name', 'email', 'username','phone',
                   'password', 'password2', 'is_superuser', 'is_staff')
 
         extra_kwargs = {
@@ -41,6 +41,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
+            phone=validated_data['phone'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             is_staff=validated_data['is_staff'],
@@ -54,7 +55,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class UpdateUserSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
-    phone = serializers.IntegerField(required=True)
+    phone = serializers.CharField(required=True)
     username = serializers.CharField(required=True)
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)

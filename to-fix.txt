@@ -31,31 +31,32 @@ _add colors to report table:
 	{ 
 	  _ask for collor pallet
 	}
-_fix language (translate to french): 
-	{ 
-	  _hardcode French lang
-	  	or
-	  _use i18n
-	}
-_fix 0 not showing in user phone: 
-	{ 
-	  _hardcode 0
-	  	or
-	  _change phone field to char_max-len=15
-	}
-_fix sql tables view : 
-	{ 
-	  _figure out how to show schema in pgadmin-4
-	  	or
-	  _find another way to show tables in use
-	}
+
+																	_fix language (translate to french): 
+																		{ 
+																		_hardcode French lang
+																			or
+																		_use i18n
+																		}
+															------		_fix 0 not showing in user phone: 
+															------			{ 
+															------			_hardcode 0
+															------				or
+															------			_change phone field to char_max-len=15
+															------			}
+															------	_fix sql tables view : 
+															------		{ 
+															------		_figure out how to show schema in pgadmin-4
+															------			or
+															------		_find another way to show tables in use
+															------		}
 _design dashboard page
-_check the calculations one last time and fix any bugs
-_fix time obs single view
-_fix app main icon
+															-----_check the calculations one last time and fix any bugs
+																_fix time obs single view
+																_fix app main icon
 _check all alert msgs
-_remove rounding in all except report app
-_fix diff output on reports on expected recs
+																		_remove rounding in all except report app
+																	_fix diff output on reports on expected recs
 
 ---misc
 
