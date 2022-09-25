@@ -3,8 +3,8 @@ from django.db import models
 
 class Region (models.Model):
 
-    name = models.CharField(max_length=254)
-    code = models.CharField(max_length=254)
+    name = models.CharField(max_length=50)
+    code = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name

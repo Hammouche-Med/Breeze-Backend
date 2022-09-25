@@ -8,7 +8,7 @@ class Observation (models.Model):
     obs_time = models.TimeField()
     rec_date = models.DateField()
     rec_time = models.TimeField()
-    type = models.CharField(max_length=50)
+    type = models.CharField(max_length=20)
     content = models.CharField(max_length=254)
     station = models.ForeignKey(Station, related_name='station', on_delete=models.CASCADE)
 
